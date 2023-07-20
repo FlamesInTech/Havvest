@@ -1,176 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Dynamic Three-Step Sign Up Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Image Slider</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-    }
-    .step-form {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .step {
-      display: none;
-    }
-    .step.active {
-      display: block;
-    }
-    .step-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 10px;
-    }
-    .step-header h2 {
-      margin: 0;
-    }
-    .step-buttons {
-      display: flex;
-    }
-    .step-buttons button {
-      margin: 5px;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    .form-group input {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .slider-container {
-      max-width: 400px;
-      overflow: hidden;
-      margin: 20px auto;
-    }
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
 
-    .slider {
-      display: flex;
-      transition: transform 0.3s ease;
-    }
+.slider-container {
+  width: 550px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
 
-    .slider img {
-      width: 100%;
-    }
+.slider {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 200px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #555;
+}
+
+.continue-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.continue-button:hover {
+  background-color: #0056b3;
+}
+
   </style>
 </head>
 <body>
-
-    <div class="slider-container">
-        <div class="slider">
-          <img src="image1.jpg" alt="Step 1">
-          <img src="image2.jpg" alt="Step 2">
-          <img src="image3.jpg" alt="Step 3">
+  <div class="slider-container">
+    <div class="slider">
+      <div class="slides">
+        <div class="slide">
+          <img src="Havvestvfdd 1.png" alt="Image 1">
         </div>
-      </div>
-
-  <div class="step-form">
-    <div class="step step-1 active">
-      <div class="step-header">
-        <h2>Step 1: Account Information</h2>
-        <div class="step-buttons">
-          <button onclick="nextStep(1)">Next</button>
+        <div class="slide">
+          <img src="fgrtte 1.png" alt="Image 2">
         </div>
-      </div>
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" placeholder="Enter your username">
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="Enter your email">
+        <div class="slide">
+          <img src="Designer 3 Copy 3vfd 1.png" alt="Image 3">
+        </div>
       </div>
     </div>
-
-    <div class="step step-2">
-      <div class="step-header">
-        <h2>Step 2: Personal Information</h2>
-        <div class="step-buttons">
-          <button onclick="prevStep(2)">Previous</button>
-          <button onclick="nextStep(2)">Next</button>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="fullname">Full Name:</label>
-        <input type="text" id="fullname" placeholder="Enter your full name">
-      </div>
-      <div class="form-group">
-        <label for="birthdate">Date of Birth:</label>
-        <input type="date" id="birthdate">
-      </div>
+    <div class="dots">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
-
-    <div class="step step-3">
-      <div class="step-header">
-        <h2>Step 3: Account Type</h2>
-        <div class="step-buttons">
-          <button onclick="prevStep(3)">Previous</button>
-          <button onclick="submitForm()">Submit</button>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="accountType">Choose Account Type:</label>
-        <select id="accountType">
-          <option value="free">Free</option>
-          <option value="premium">Premium</option>
-        </select>
-      </div>
-    </div>
+    <button class="continue-button">Continue</button>
   </div>
-
   <script>
-    let currentStep = 1;
+    // Initialize variables
+const slidesContainer = document.querySelector('.slides');
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+const continueButton = document.querySelector('.continue-button');
 
-    function showStep(stepNumber) {
-      const steps = document.querySelectorAll('.step');
-      for (let i = 0; i < steps.length; i++) {
-        steps[i].classList.remove('active');
-      }
-      steps[stepNumber - 1].classList.add('active');
-      currentStep = stepNumber;
+let currentSlide = 0;
+
+// Function to show the active slide
+function showSlide(slideIndex) {
+  slidesContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+
+  // Update the active dot
+  dots.forEach((dot, index) => {
+    if (index === slideIndex) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
     }
+  });
+}
 
-    function nextStep(stepNumber) {
-      if (stepNumber === 1) {
-        // Add validation logic for Step 1 if required
-      } else if (stepNumber === 2) {
-        // Add validation logic for Step 2 if required
-      }
+// Function to move to the next slide
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
 
-      if (currentStep < 3) {
-        showStep(currentStep + 1);
-      }
-    }
+// Initialize the slider
+showSlide(currentSlide);
 
-    function prevStep(stepNumber) {
-      if (currentStep > 1) {
-        showStep(currentStep - 1);
-      }
-    }
+// Event listeners for dots and continue button
+dots.forEach((dot, index) => {
+  dot.addEventListener('click', () => {
+    currentSlide = index;
+    showSlide(currentSlide);
+  });
+});
 
-    function submitForm() {
-      // Here, you can gather all the form data and perform the final submission.
-      // For simplicity, let's log the form data to the console in this example.
-      const formData = {
-        username: document.getElementById('username').value,
-        email: document.getElementById('email').value,
-        fullname: document.getElementById('fullname').value,
-        birthdate: document.getElementById('birthdate').value,
-        accountType: document.getElementById('accountType').value,
-      };
-      console.log(formData);
+continueButton.addEventListener('click', nextSlide);
 
-      // In a real implementation, you would typically send this data to the server.
-    }
   </script>
 </body>
 </html>

@@ -10,7 +10,7 @@
  <div class="main">
  	<div class="SignUp">
  		<div class="header">
- 			<div class="logo">havvest</div>
+ 			<div class="logo"><img src="orange_logo__havvest.png" alt="logo"></div>
  		</div>
 		<div class="form">
 			<form action="" method="post">
@@ -30,7 +30,7 @@
 				<div class="agree">
 					<input type="checkbox"> <label for="agreement">I agree to the <span class="asteriks">terms & condition privacy policy</span> </label>
 				</div>
-				<div class="btn"><button>Sign up</button></div>
+				<div class="btn"><button class="continue-button">Sign up</button></div>
 				
 				<div>Already have an account? <span class="asteriks">Sign in</span> </div>
 
@@ -44,58 +44,70 @@
 			</form>
 		</div>
  	</div>
- 	<div class="slider">
+ 	<div class="guide-slide">
  		<p>An easy to use and intuitive dashboard to <br>
 			<span class="asteriks">manage all your investments</span> </p>
-		<div class="slide">
-			<div class="image-container">
-				<section class="wrapper">
-					<div class="carousel">
-						<img src="Havvestvfdd 1.png" alt="" />
-						<img src="fgrtte 1.png" alt="" />
-						<img src="Contact us image1 1.png" alt="">
+			<div class="carousel">
+				<div class="slider-container">
+					<div class="slider">
+						<div class="slides">
+							<div class="slide">
+							<img src="Havvestvfdd 1.png" alt="Image 1">
+							</div>
+							<div class="slide">
+							<img src="fgrtte 1.png" alt="Image 2">
+							</div>
+							<div class="slide">
+							<img src="Designer 3 Copy 3vfd 1.png" alt="Image 3">
+							</div>
+						</div>
 					</div>
-				</section>
+				</div>
+				<div class="dots">
+					<span class="dot"></span>
+					<span class="dot"></span>
+					<span class="dot"></span>
+				</div>
 			</div>
-		</div>		
+				
 	</div>
  </div>
 </body>
 <script>
-	//Get the DOM
-	const wrapper = document.quesrySelector(".wrapper"),
-			carousel = document.quesrySelector(".carousel"),
-			images = document.querySelectorAll("img"),
-			buttons = document.querySelectorAll(".button");
+     const slides = document.querySelector('.slides');
+const dots = document.querySelectorAll('.dot');
+const continueButton = document.querySelector('.continue-button');
 
-	let imageIndex = 1,
-	intervalId;
+let currentSlide = 0;
 
-	//Define function to start automatic image slider
-	const autoSlide = () => {
-		// Start the slide show by calling  slideImage() every 2 seconds
-		intervalId = setInterval(() => slideImage(++imageIndex), 2000);
-		// Call autoSlide function on page load
-		autoSlide();
+function showSlide(slideIndex) {
+  slides.style.transform = `translateX(-${slideIndex * 300}px)`;
 
-		// A function that updates the cariysek dusokat to show the specified image
-		const slideImage = () => {
-			// Calculate the updated image index
-			imageIndex = imageIndex === images.length ? 0 : imageIndex < 0 ? images.length - 1 : imageIndex;
-			// Update the carousel display to show the specific image
-			carousel.style.transform = ` translate(-${imageIndex * 1000}%)`;
-		};
+  // Update the active dot
+  dots.forEach((dot, index) => {
+    if (index === slideIndex) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+}
 
-		// A function that updates the carousel display to show the next or previous image
-		const updateClick = (e) => {
-			// Stop the automatic slideshow
-			clearInterval(intervalId);
-			// Calculate the updated image index based on the button clicked 
-			imageIndex += e.target.id === "next" ? 1 : -1;
-			slideImage(imageIndex);
-			// Restart the automatic slideshow
-			autoSlide();
-		}
-	}
-</script>
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % 3;
+  showSlide(currentSlide);
+}
+
+// Initialize the slider
+showSlide(currentSlide);
+
+dots.forEach((dot, index) => {
+  dot.addEventListener('click', () => {
+    currentSlide = index;
+    showSlide(currentSlide);
+  });
+});
+
+continueButton.addEventListener('click', nextSlide);
+  </script>
 </html>
