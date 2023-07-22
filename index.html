@@ -12,7 +12,7 @@
  		<div class="header">
  			<div class="logo"><img src="orange_logo__havvest.png" alt="logo"></div>
  		</div>
-		<div class="form">
+		<div class="form" id="form1">
 			<form action="" method="post">
 				<div>
 					<h2>Get Started Now</h2>
@@ -30,7 +30,7 @@
 				<div class="agree">
 					<input type="checkbox"> <label for="agreement">I agree to the <span class="asteriks">terms & condition privacy policy</span> </label>
 				</div>
-				<div class="btn"><button class="continue-button">Sign up</button></div>
+				<div class="btn"><button class="continue-button"  onclick="nextForm(2); nextSlide()">Sign up</button></div>
 				
 				<div>Already have an account? <span class="asteriks">Sign in</span> </div>
 
@@ -43,71 +43,164 @@
 
 			</form>
 		</div>
+
+		<!-- Second form -->
+		<div class="form" id="form2">
+			<form action="" method="post">
+				<div>
+					<h2>Get Started Now</h2>
+					<p>The smartest way to invest and save online</p>
+				</div> <br>
+				<div class="email">
+					<div><label for="fname">First Name<span class="asteriks">*</span></label></div> 
+					<div><input type="text" name="fname" id="fname" placeholder="Enter First Name" required></div>  
+				</div>
+				<div class="password">
+					<div><label for="lname">Last Name<span class="asteriks">*</span></label></div> 
+					<div><input type="text" name="lname" id="lname" placeholder="Enter Last Name" required></div> 
+				</div>
+				<div class="password">
+					<div><label for="lname">Last Name<span class="asteriks">*</span></label></div> 
+					<div><input type="text" name="lname" id="lname" placeholder="Enter Last Name" required></div> 
+				</div>
+				<div class="agree">
+					<input type="checkbox"> <label for="agreement">I agree to the <span class="asteriks">terms & condition privacy policy</span> </label>
+				</div>
+				<div class="btn"><button class="continue-button"  onclick="nextForm(3); nextSlide()">Continue</button></div>
+			</form>
+		</div>
+
+		<!-- Third form -->
+		<div class="form" id="form3">
+			<form action="" method="post">
+				<div>
+					<h2>Get Started Now</h2>
+					<p>The smartest way to invest and save online</p>
+				</div> <br>
+				<div class="email">
+					<div><label for="fname">First Name<span class="asteriks">*</span></label></div> 
+					<div><input type="text" name="fname" id="fname" placeholder="Enter First Name" required></div>  
+				</div>
+				<div class="password">
+					<div><label for="lname">Last Name<span class="asteriks">*</span></label></div> 
+					<div><input type="text" name="lname" id="lname" placeholder="Enter Last Name" required></div> 
+				</div>
+				<div class="password">
+					<div><label for="lname">Last Name<span class="asteriks">*</span></label></div> 
+					<div><input type="text" name="lname" id="lname" placeholder="Enter Last Name" required></div> 
+				</div>
+				<div class="agree">
+					<input type="checkbox"> <label for="agreement">I agree to the <span class="asteriks">terms & condition privacy policy</span> </label>
+				</div>
+	  			<div class="btn">
+					<button class="continue-button"  onclick="submitForm(); nextSlide()">Continue</button>
+				</div>
+			</form> 
+		</div>
  	</div>
  	<div class="guide-slide">
  		<p>An easy to use and intuitive dashboard to <br>
 			<span class="asteriks">manage all your investments</span> </p>
-			<div class="carousel">
-				<div class="slider-container">
-					<div class="slider">
-						<div class="slides">
-							<div class="slide">
-							<img src="Havvestvfdd 1.png" alt="Image 1">
-							</div>
-							<div class="slide">
-							<img src="fgrtte 1.png" alt="Image 2">
-							</div>
-							<div class="slide">
-							<img src="Designer 3 Copy 3vfd 1.png" alt="Image 3">
-							</div>
-						</div>
-					</div>
+			 <!-- Slider content goes here -->
+			 <div class="slider-container">
+				<div class="slider">
+				  <div class="slide active">
+					<!-- Content for Slide 1 -->
+					<img src="Havvestvfdd 1.png" alt="">
+				  </div>
+				  <div class="slide">
+					<!-- Content for Slide 2 -->
+					<img src="fgrtte 1.png" alt="">
+				  </div>
+				  <div class="slide">
+					<!-- Content for Slide 3 -->
+					<img src="Contact us image1 1.png" alt="">
+				  </div>
 				</div>
 				<div class="dots">
-					<span class="dot"></span>
-					<span class="dot"></span>
-					<span class="dot"></span>
+				  <span class="dot active-dot" onclick="changeSlide(0)"></span>
+				  <span class="dot" onclick="changeSlide(1)"></span>
+				  <span class="dot" onclick="changeSlide(2)"></span>
 				</div>
-			</div>
+				<button class="continue-btn" onclick="nextSlide(); showMobileForm()">Continue</button>
+			  </div>
 				
 	</div>
  </div>
 </body>
 <script>
-     const slides = document.querySelector('.slides');
-const dots = document.querySelectorAll('.dot');
-const continueButton = document.querySelector('.continue-button');
+    let currentSlide = 0;
 
-let currentSlide = 0;
+function showSlide(index) {
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
 
-function showSlide(slideIndex) {
-  slides.style.transform = `translateX(-${slideIndex * 300}px)`;
+  if (index < 0 || index >= slides.length) return;
 
-  // Update the active dot
-  dots.forEach((dot, index) => {
-    if (index === slideIndex) {
-      dot.classList.add('active');
+  slides.forEach((slide, i) => {
+    if (i === index) {
+      slide.classList.add('active');
+      dots[i].classList.add('active-dot');
     } else {
-      dot.classList.remove('active');
+      slide.classList.remove('active');
+      dots[i].classList.remove('active-dot');
     }
   });
+
+  currentSlide = index;
 }
 
 function nextSlide() {
-  currentSlide = (currentSlide + 1) % 3;
-  showSlide(currentSlide);
+  const totalSlides = document.querySelectorAll('.slide').length;
+  const nextSlideIndex = (currentSlide + 1) % totalSlides;
+  showSlide(nextSlideIndex);
+}
+ 
+function changeSlide(index) {
+  showSlide(index);
 }
 
-// Initialize the slider
-showSlide(currentSlide);
 
-dots.forEach((dot, index) => {
-  dot.addEventListener('click', () => {
-    currentSlide = index;
-    showSlide(currentSlide);
-  });
-});
+  let currentForm = 1;
 
-continueButton.addEventListener('click', nextSlide);
-  </script>
+  function showForm(index) {
+    const forms = document.querySelectorAll('.form');
+
+    if (index < 1 || index > forms.length) return;
+
+    forms.forEach((form, i) => {
+      if (i === index - 1) {
+        form.style.display = 'block';
+      } else {
+        form.style.display = 'none';
+      }
+    });
+
+    currentForm = index;
+  }
+
+  function nextForm(nextIndex) {
+    showForm(nextIndex);
+  }
+
+  function prevForm(prevIndex) {
+    showForm(prevIndex);
+  }
+
+  function submitForm() {
+    // Implement form submission logic here
+    // You can access form field values using their respective IDs:
+    // const name = document.getElementById('name1').value;
+    // const email = document.getElementById('email1').value;
+    // const username = document.getElementById('username').value;
+    // const password = document.getElementById('password').value;
+    // const address = document.getElementById('address').value;
+    // const phone = document.getElementById('phone').value;
+    // Then you can send the form data to your backend or process it as needed.
+    alert('Form submitted successfully!');
+  }
+
+  // Show the first form initially
+  showForm(currentForm);
+</script>
 </html>
