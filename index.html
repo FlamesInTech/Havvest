@@ -127,14 +127,14 @@
 				  <span class="dot active-dot" onclick="changeSlide(0)"></span>
 				  <span class="dot" onclick="changeSlide(1)"></span>
 				  <span class="dot" onclick="changeSlide(2)"></span>
-				</div> 
-				<div class="btn">
-					<button class="continue-button" onclick="nextForm(currentForm + 1)">Continue</button>
-				  </div>
+				</div>  <br>  
+				<div class="btn continue-btn">
+					<button class="continue-button" onclick="nextForm(currentForm + 1)">Skip</button>
+				</div>
 				<!-- <button class="continue-btn" onclick="showMobileForm()"> Continue</button> -->
-			  </div> 
+			  </div>  
 		</div>  
- 		
+ 		 
 				
 	</div>
  </div>
@@ -206,7 +206,7 @@ function changeSlide(index) {
   showForm(currentForm);
 
   function showMobileForm() {
-    const div1 = document.querySelector('.guide-slide');
+    const div1 = document.querySelector('.guide-slide'); 
     const mobileButton = document.querySelector('.continue-button');
     const div2 = document.getElementById('form1'); // Show the first form, you can update this to show the appropriate form
 

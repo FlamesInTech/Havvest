@@ -125,6 +125,7 @@ span{
   }
   .continue-btn {
     display: none;
+    visibility: hidden;
   }
   .active-dot {
     background-color: #333;
@@ -169,13 +170,11 @@ span{
     .SignUp {
       display: none;
     }
-    .continue-btn {
-      display: none;
-    }
   } 
   /* Show the button on mobile screens */
   @media (max-width: 768px) {
     .continue-btn {
       display: block;
+      visibility: visible;
     }
   }
