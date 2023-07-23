@@ -99,21 +99,27 @@
 		</div>
  	</div>
  	<div class="guide-slide">
- 		<p>An easy to use and intuitive dashboard to <br>
-			<span class="asteriks">manage all your investments</span> </p>
+		<div class="guide-slide-container">
+			
 			 <!-- Slider content goes here -->
 			 <div class="slider-container">
 				<div class="slider">
 				  <div class="slide active">
 					<!-- Content for Slide 1 -->
+					<p>An easy to use and intuitive dashboard to <br>
+					<span class="asteriks">manage all your investments</span> </p>
 					<img src="Havvestvfdd 1.png" alt="">
 				  </div>
-				  <div class="slide">
+				  <div class="slide slide2">
 					<!-- Content for Slide 2 -->
+					<p>A mobile friendly interface to keep you <br>
+					<span class="asteriks">investing on the go</span></p>
 					<img src="fgrtte 1.png" alt="">
 				  </div>
-				  <div class="slide">
+				  <div class="slide slide3">
 					<!-- Content for Slide 3 -->
+					<p>Happy Havvestors trusts our <br>
+					<span class="asteriks">business model</span> </p>
 					<img src="Contact us image1 1.png" alt="">
 				  </div>
 				</div>
@@ -121,9 +127,14 @@
 				  <span class="dot active-dot" onclick="changeSlide(0)"></span>
 				  <span class="dot" onclick="changeSlide(1)"></span>
 				  <span class="dot" onclick="changeSlide(2)"></span>
-				</div>
-				<button class="continue-btn" onclick="nextSlide(); showMobileForm()">Continue</button>
-			  </div>
+				</div> 
+				<div class="btn">
+					<button class="continue-button" onclick="nextForm(currentForm + 1)">Continue</button>
+				  </div>
+				<!-- <button class="continue-btn" onclick="showMobileForm()"> Continue</button> -->
+			  </div> 
+		</div>  
+ 		
 				
 	</div>
  </div>
@@ -188,19 +199,20 @@ function changeSlide(index) {
   }
 
   function submitForm() {
-    // Implement form submission logic here
-    // You can access form field values using their respective IDs:
-    // const name = document.getElementById('name1').value;
-    // const email = document.getElementById('email1').value;
-    // const username = document.getElementById('username').value;
-    // const password = document.getElementById('password').value;
-    // const address = document.getElementById('address').value;
-    // const phone = document.getElementById('phone').value;
-    // Then you can send the form data to your backend or process it as needed.
     alert('Form submitted successfully!');
   }
 
   // Show the first form initially
   showForm(currentForm);
+
+  function showMobileForm() {
+    const div1 = document.querySelector('.guide-slide');
+    const mobileButton = document.querySelector('.continue-button');
+    const div2 = document.getElementById('form1'); // Show the first form, you can update this to show the appropriate form
+
+    div1.style.display = 'none'; // Hide the slider
+    mobileButton.style.display = 'none'; // Hide the mobile button
+    div2.style.display = 'block'; // Show the first form
+  }
 </script>
 </html>
