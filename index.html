@@ -74,26 +74,17 @@
 		<div class="form" id="form3">
 			<form action="" method="post">
 				<div>
-					<h2>Get Started Now</h2>
-					<p>The smartest way to invest and save online</p>
+					<h2>Create a 4-digit transaction pin</h2>
+					<p>The Pin will be used to authorize transactions</p>
 				</div> <br>
-				<div class="email">
-					<div><label for="fname">First Name<span class="asteriks">*</span></label></div> 
-					<div><input type="text" name="fname" id="fname" placeholder="Enter First Name" required></div>  
-				</div>
-				<div class="password">
-					<div><label for="lname">Last Name<span class="asteriks">*</span></label></div> 
-					<div><input type="text" name="lname" id="lname" placeholder="Enter Last Name" required></div> 
-				</div>
-				<div class="password">
-					<div><label for="lname">Last Name<span class="asteriks">*</span></label></div> 
-					<div><input type="text" name="lname" id="lname" placeholder="Enter Last Name" required></div> 
-				</div>
-				<div class="agree">
-					<input type="checkbox"> <label for="agreement">I agree to the <span class="asteriks">terms & condition privacy policy</span> </label>
-				</div>
+				<div class="pin-container">
+					<input type="text" maxlength="1" id="input1" class="pin-input" />
+					<input type="text" maxlength="1" id="input2" class="pin-input" />
+					<input type="text" maxlength="1" id="input3" class="pin-input" />
+					<input type="text" maxlength="1" id="input4" class="pin-input" />
+				  </div>
 	  			<div class="btn">
-					<button class="continue-button"  onclick="submitForm(); nextSlide()">Continue</button>
+					<button class="continue-button"  onclick="submitForm(); nextSlide()">Sign up</button>
 				</div>
 			</form> 
 		</div>
@@ -197,22 +188,24 @@ function changeSlide(index) {
   function prevForm(prevIndex) {
     showForm(prevIndex);
   }
-
+                                        
   function submitForm() {
     alert('Form submitted successfully!');
   }
 
   // Show the first form initially
-  showForm(currentForm);
-
+  showForm(currentForm); 
+ 
   function showMobileForm() {
-    const div1 = document.querySelector('.guide-slide'); 
-    const mobileButton = document.querySelector('.continue-button');
+    const div1 = document.querySelector('.guide-slide');  
+    const mobileButton = document.querySelector('.continue-btn');
     const div2 = document.getElementById('form1'); // Show the first form, you can update this to show the appropriate form
 
     div1.style.display = 'none'; // Hide the slider
     mobileButton.style.display = 'none'; // Hide the mobile button
     div2.style.display = 'block'; // Show the first form
   }
-</script>
+
+//   showMobileForm();      
+</script>  
 </html>
